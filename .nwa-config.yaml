@@ -1,0 +1,6 @@
+nwa:
+  holder: BINARY Members
+  license: apache-2.0
+  fuzzy: true
+  path:
+    - "**/*.go"
