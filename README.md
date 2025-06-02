@@ -1,3 +1,3 @@
-# .github
+# CSQLITE
 
-> WELCOME TO BINARY
+- [ ] use `csqlite_users` as user information storage system table
