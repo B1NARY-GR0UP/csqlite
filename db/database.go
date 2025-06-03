@@ -29,7 +29,7 @@ func (db *Database) GetTableInsensitive(_ *sql.Context, tblName string) (sql.Tab
 
 	var table string
 	if err := db.pool.QueryRow(query, tblName).Scan(&table); err != nil {
-		if errors.As(err, &stdsql.ErrNoRows) {
+		if errors.Is(err, stdsql.ErrNoRows) {
 			return nil, false, nil
 		}
 		return nil, false, err
