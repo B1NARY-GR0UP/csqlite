@@ -2,38 +2,8 @@ package main
 
 import (
 	stdsql "database/sql"
-	"github.com/B1NARY-GR0UP/csqlite/db"
-	sqle "github.com/dolthub/go-mysql-server"
-	"github.com/dolthub/go-mysql-server/server"
-	"github.com/dolthub/go-mysql-server/sql"
 	"testing"
 )
-
-func TestPrototype(t *testing.T) {
-	pool, err := stdsql.Open("sqlite3", "testdata/test.db")
-	if err != nil {
-		panic(err)
-	}
-	defer pool.Close()
-
-	provider := db.NewProvider(db.NewDatabase("test", pool))
-	engine := sqle.NewDefault(provider)
-
-	config := server.Config{
-		Protocol: "tcp",
-		Address:  "127.0.0.1:9999",
-	}
-
-	srv, err := server.NewServer(config, engine, sql.NewContext, db.NewSessionBuilder(provider), nil)
-	if err != nil {
-		panic(err)
-	}
-	defer srv.Close()
-
-	if err = srv.Start(); err != nil {
-		panic(err)
-	}
-}
 
 func TestSQLiteDriver(t *testing.T) {
 	// Connect to SQLite database
